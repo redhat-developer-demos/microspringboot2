@@ -1,0 +1,20 @@
+---
+apiVersion: "extensions/v1beta1"
+kind: "Deployment" 
+spec: 
+  replicas: 1
+  template: 
+    spec: 
+      containers: 
+      - env:
+         - name: JAVA_OPTIONS
+           value: -XX:ThreadStackSize=256k -Dspring.profiles.active=openshift
+         - name: JAVA_MAX_MEM_RATIO
+           value: 13
+         - name: AB_JOLOKIA_OFF
+           value: "true"
+         - name: AB_OFF
+           value: "true"
+        resources: 
+          limits: 
+            memory: "250Mi"
